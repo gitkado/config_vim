@@ -1,0 +1,83 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+	if dein#util#_is_windows()
+		let cmd = 'tools\\update-dll-mingw'
+	elseif dein#util#_is_cygwin()
+		let cmd = 'make -f make_cygwin.mak'
+		elseif executable('gmake')
+		let cmd = 'gmake'
+		else
+		let cmd = 'make'
+	endif
+	let g:dein#plugin.build = cmd
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+
+[[plugins]]
+repo = 'Valloric/MatchTagAlways'
+
+[[plugins]]
+repo = 'othree/html5.vim'
+
+[[plugins]]
+repo = 'statianzo/vim-jade'
+
+[[plugins]]
+repo = 'wavded/vim-stylus'
+
+[[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'basyura/jslint.vim'
+
+[[plugins]]
+repo = 'JavaScript-syntax'
+
+[[plugins]]
+repo = 'sakuraiyuta/commentout.vim'
+
+[[plugins]]
+repo = 'sjl/gundo.vim'
+
+[[plugins]]
+repo = 'Lokaltog/vim-easymotion'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]]
+repo = 'kristijanhusak/vim-hybrid-material'
+
+[[plugins]]
+repo = 'YankRing.vim'
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+
+[[plugins]]
+repo = 'surround.vim'
+
+[[plugins]]
+repo = 'heavenshell/vim-jsdoc'
