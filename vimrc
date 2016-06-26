@@ -5,8 +5,9 @@
 "   \ V / | | | | | | |
 "    \_/  |_|_| |_| |_|
 "
-" UPDATE: 2016-05-25
+" UPDATE: 2016-06-26
 " ***********************************
+
 if !&compatible
   set nocompatible
 endif
@@ -40,7 +41,6 @@ set showcmd
 set wildmenu
 set wildmode=list:longest,full
 
-" カラー設定:
 set t_Co=256
 syntax on
 set background=dark
@@ -97,7 +97,6 @@ set autoindent
 set cindent
 set nosmartindent
 
-
 " Enable folding.
 set foldenable
 set foldmethod=marker
@@ -107,14 +106,6 @@ set foldcolumn=5
 " WINDOW
 set splitbelow
 set splitright
-" ウィンドウ分割時にウィンドウサイズを調節する。Shiftキー ＋ 矢印キー
-nnoremap <silent> <S-Left>  :5wincmd <<CR>
-nnoremap <silent> <S-Right> :5wincmd ><CR>
-nnoremap <silent> <S-Up>    :5wincmd -<CR>
-nnoremap <silent> <S-Down>  :5wincmd +<CR>
-noremap gn :tabnew<CR>
-noremap gh gT
-noremap gl gt
 set showtabline=2
 set guioptions-=e
 
@@ -123,23 +114,7 @@ set guioptions-=e
 set ignorecase
 set wrapscan
 set hlsearch
-" インクリメンタルサーチを行う
 set incsearch
 set grepprg=grep\ -nH
-" 検索結果ハイライト解除
-nnoremap <ESC><ESC> :nohlsearch<CR>
-" 検索結果に移動した時、その位置を画面の中央に変更
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
-nnoremap <silent> <S-Left>  :5wincmd <<CR>
-nnoremap <silent> <S-Right> :5wincmd ><CR>
-nnoremap <silent> <S-Up>    :5wincmd -<CR>
-nnoremap <silent> <S-Down>  :5wincmd +<CR>
+
 set scrolloff=3
-
-
-au BufNewFile,BufRead *.ejs setf html
