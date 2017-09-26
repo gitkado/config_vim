@@ -5,7 +5,7 @@
 "   \ V / | | | | | | |
 "    \_/  |_|_| |_| |_|
 "
-" UPDATE: 2016-06-26
+" UPDATE: 2016-09-13
 " ***********************************
 
 if !&compatible
@@ -24,7 +24,7 @@ let g:netrw_home='~/.vim/tmp/ETC'
 set backupdir=~/.vim/tmp/BAK
 set directory=~/.vim/tmp/SWP
 set undodir=~/.vim/tmp/UND
-set viminfo='50,\"1000,:0,n~/.vim/tmp/ETC/.viminfo'
+set viminfo='50,<1000,s100,:0,n~/.vim/tmp/ETC/.viminfo
 
 set clipboard=unnamed,autoselect
 
@@ -41,10 +41,6 @@ set showcmd
 set wildmenu
 set wildmode=list:longest,full
 
-set t_Co=256
-syntax on
-set background=dark
-colorscheme hybrid_material
 
 set whichwrap=h,l
 
@@ -64,8 +60,10 @@ set cursorline
 hi clear CursoeColumn
 hi clear CursorLine
 hi CursorLine gui=underline
-highlight CursorColumn ctermbg=236 guibg=black
-highlight CursorLine ctermbg=236 guibg=black
+
+highlight CursorColumn ctermbg=23 guibg=black
+highlight CursorLine ctermbg=23 guibg=black
+
 set fillchars=vert:\|
 set foldmethod=marker
 hi Folded gui=bold term=standout ctermfg=Blue guibg=blue guifg=black

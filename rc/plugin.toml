@@ -17,7 +17,10 @@ hook_post_update = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/vimfiler'
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'cocopon/vaffle.vim'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
@@ -29,55 +32,26 @@ repo = 'h1mesuke/vim-alignta'
 repo = 'Valloric/MatchTagAlways'
 
 [[plugins]]
-repo = 'othree/html5.vim'
-
-[[plugins]]
-repo = 'statianzo/vim-jade'
-
-[[plugins]]
-repo = 'wavded/vim-stylus'
-
-[[plugins]]
-repo = 'cakebaker/scss-syntax.vim'
-
-[[plugins]]
-repo = 'hail2u/vim-css3-syntax'
-
-[[plugins]]
-repo = 'basyura/jslint.vim'
-
-[[plugins]]
-repo = 'JavaScript-syntax'
-
-[[plugins]]
-repo = 'sakuraiyuta/commentout.vim'
-
-[[plugins]]
-repo = 'sjl/gundo.vim'
-
-[[plugins]]
-repo = 'Lokaltog/vim-easymotion'
-
-[[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
+repo = 'itchyny/vim-parenmatch'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'plasticboy/vim-markdown'
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'kristijanhusak/vim-hybrid-material'
 
 [[plugins]]
-repo = 'YankRing.vim'
+repo = 'sonjapeterson/1989.vim'
 
 [[plugins]]
-repo = 'othree/yajs.vim'
+repo = 'vim-scripts/chlordane.vim'
 
 [[plugins]]
-repo = 'surround.vim'
+repo = 'w0ng/vim-hybrid'
 
-[[plugins]]
-repo = 'heavenshell/vim-jsdoc'

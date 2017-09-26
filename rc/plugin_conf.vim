@@ -1,7 +1,7 @@
 " unite.vim: {{{
 " The prefix key
 nnoremap [unite] <Nop>
-nmap <Leader>f [unite]
+nmap <Leader><Space> [unite]
 
 " unite.vim keymap
 " https://github.com/alwei/dotfiles/blob/3760650625663f3b08f24bc75762ec843ca7e112/.vimrc
@@ -32,6 +32,14 @@ let g:unite_source_grep_max_candidates = 200
 " https://github.com/shingokatsushima/dotfiles/blob/master/.vimrc
 vnoremap /g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 " }}}
+
+
+" vaffle:{{{
+let g:vaffle_show_hidden_files=1
+let g:vaffle_auto_cd = 1
+" }}}
+
+
 " neocomplete.vim: {{{
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
@@ -49,7 +57,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+    \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -118,74 +126,29 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
-" matchit.vim: {{{
+
+
+" parenmatch: {{{
 " ******************************************************
-source $VIMRUNTIME/macros/matchit.vim
+let g:loaded_matchparen = 1
 "}}}
-" vim-smartinput: {{{
-" -
+
+
+" Matchtagalways: {{{
+" - https://github.com/Valloric/MatchTagAlways
 " ******************************************************
-" for `ruby`
-"call smartinput#map_to_trigger('i', '#', '#', '#')
-"call smartinput#define_rule({
-"\   'at': '\%#',
-"\   'char': '#',
-"\   'input': '#{}<Left>',
-"\   'filetype': ['ruby'],
-"\   'syntax': ['Constant', 'Special'],
-"\ })
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'jinja' : 1,
+	\ 'php' : 1,
+    \}
+let g:mta_use_matchparen_group = 0
+highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
 "}}}
-" jslint.vim: {{{
-"  - https://github.com/basyura/jslint.vim
-"  - :copen -> :cnext ...
-" ******************************************************
-" augroup jslint
-"     autocmd! jslint
-"     autocmd FileType javascript call s:javascript_filetype_settings()
-" augroup END
-"
-" function! s:javascript_filetype_settings()
-"   autocmd BufLeave     <buffer> call jslint#clear()
-"   autocmd BufWritePost <buffer> call jslint#check()
-"   autocmd CursorMoved  <buffer> call jslint#message()
-" endfunction
-"
-"}}}
-" html5.vim: {{{
-" - https://github.com/othree/html5.vim
-" ******************************************************
-let g:html5_event_handler_attributes_complete = 1
-let g:html5_rdfa_attributes_complete = 1
-let g:html5_microdata_attributes_complete = 1
-let g:html5_aria_attributes_complete = 1
-"}}}
-" vim-indent-guides: {{{
-" - https://github.com/nathanaelkane/vim-indent-guides
-" ******************************************************
-"set ts=4 sw=4
-" let g:indent_guides_enable_on_vim_startup=1
-" let g:indent_guides_start_level=2
-" let g:indent_guides_guide_size = 1
-" let g:indent_guides_auto_colors=0
-" 					autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#333339 guifg=#404040 ctermbg=0 ctermfg=236
-" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#292930 guifg=#333333 ctermbg=236 ctermfg=0
-"let g:indent_guides_color_change_percent = 30
-"}}}
-" vim-easymotion: {{{
-" -
-" ******************************************************
-let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
-let g:EasyMotion_leader_key="<space>"
-let g:EasyMotion_grouping=1
-hi EasyMotionTarget ctermbg=none ctermfg=red
-hi EasyMotionShade  ctermbg=none ctermfg=blue
-" }}}
-" YankRing.vim {{{
-" -
-" ******************************************************
-nnoremap <C-P> :<C-u>YRShow<cr>
-let g:yankring_history_dir = "~/.vim/tmp/YNK"
-" }}}
+
+
 " emmet: {{{
 " ******************************************************
 let g:user_emmet_leader_key = '<C-e>'
@@ -200,19 +163,8 @@ let g:user_emmet_settings = {
 \	},
 \ }
 " }}}
-" Matchtagalways: {{{
-" - https://github.com/Valloric/MatchTagAlways
-" ******************************************************
-let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'jinja' : 1,
-	\ 'php' : 1,
-    \}
-let g:mta_use_matchparen_group = 0
-highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
-"}}}
+
+
 " lightline: {{{
 " -
 " ******************************************************
@@ -240,3 +192,4 @@ function! s:syntastic()
 	call lightline#update()
 endfunction
 "}}}
+

@@ -22,8 +22,15 @@ if dein#load_state(s:dein_dir)
 endif
 
 
-if dein#check_install()
+if has('vim_starting') && dein#check_install()
 	call dein#install()
 endif
 
+
 filetype plugin indent on
+set t_Co=256
+set background=dark
+" colorscheme hybrid
+colorscheme hybrid_material
+" colorscheme chlordane
+syntax on

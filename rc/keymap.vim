@@ -18,6 +18,8 @@ imap <C-j> OB
 imap <C-k> OA
 imap <C-l> OC
 
+imap <C-=> <C-r>=
+
 " jkでのカーソルを表示行単位で移動できるように変更
 noremap j gj
 noremap k gk
@@ -60,3 +62,6 @@ nnoremap <silent> <S-Down>  :5wincmd +<CR>
 noremap gn :tabnew<CR>
 noremap gh gT
 noremap gl gt
+
+vnoremap <c-a> <c-a>gv
+vnoremap <c-x> <c-x>gv
