@@ -1,6 +1,40 @@
+# *****************************************
+#
+#      _/\/\____/\/\_/\/\__________________
+#     _/\/\____/\/\________/\/\/\__/\/\___ 
+#    _/\/\____/\/\_/\/\___/\/\/\/\/\/\/\_  
+#   ___/\/\/\/\___/\/\___/\/\__/\__/\/\_   
+#  _____/\/\_____/\/\/\_/\/\______/\/\_    
+# ____________________________________     
+#
+# LAST UPDATE: 2018-09-06
+#
+# Install plugin lists for lasy load
+#
+# *****************************************
+
 [[plugins]]
 repo  = 'Quramy/tsuquyomi'
 on_ft = ['typescript']
+
+[[plugins]]
+repo  = 'stephpy/vim-php-cs-fixer'
+on_ft = ['php']
+
+[[plugins]]
+repo  = 'stephpy/vim-yaml'
+on_ft = ['yaml']
+
+[[plugins]]
+repo  = 'cespare/vim-toml'
+on_ft = ['toml']
+
+
+[[plugins]]
+repo  = 'wavded/vim-stylus'
+on_ft = ['stylus']
+
+
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'

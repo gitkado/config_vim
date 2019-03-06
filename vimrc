@@ -1,12 +1,17 @@
-" ***********************************
-" __     ___
-" \ \   / (_)_ __ ___
-"  \ \ / /| | '_ ` _ \
-"   \ V / | | | | | | |
-"    \_/  |_|_| |_| |_|
+" *****************************************
 "
-" UPDATE: 2016-09-13
-" ***********************************
+"      _/\/\____/\/\_/\/\__________________
+"     _/\/\____/\/\________/\/\/\__/\/\___ 
+"    _/\/\____/\/\_/\/\___/\/\/\/\/\/\/\_  
+"   ___/\/\/\/\___/\/\___/\/\__/\__/\/\_   
+"  _____/\/\_____/\/\/\_/\/\______/\/\_    
+" ____________________________________     
+"
+" LAST UPDATE: 2018-09-06
+" 
+" main configure
+"
+" *****************************************
 
 if !&compatible
   set nocompatible
@@ -19,12 +24,16 @@ set fileformats=unix,dos,mac
 set fileencoding=utf-8
 set fileencodings=utf-8,sjis,japan,iso-2022-jp
 
+set backupskip=/tmp/*,/private/tmp/*
+
+
 let g:netrw_liststyle=3
 let g:netrw_home='~/.vim/tmp/ETC'
 set backupdir=~/.vim/tmp/BAK
 set directory=~/.vim/tmp/SWP
 set undodir=~/.vim/tmp/UND
 set viminfo='50,<1000,s100,:0,n~/.vim/tmp/ETC/.viminfo
+set tags+=.tags;~
 
 set clipboard=unnamed,autoselect
 
@@ -40,7 +49,6 @@ set linespace=1
 set showcmd
 set wildmenu
 set wildmode=list:longest,full
-
 
 set whichwrap=h,l
 

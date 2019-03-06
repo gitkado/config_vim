@@ -1,3 +1,18 @@
+" *****************************************
+"
+"      _/\/\____/\/\_/\/\__________________
+"     _/\/\____/\/\________/\/\/\__/\/\___ 
+"    _/\/\____/\/\_/\/\___/\/\/\/\/\/\/\_  
+"   ___/\/\/\/\___/\/\___/\/\__/\__/\/\_   
+"  _____/\/\_____/\/\/\_/\/\______/\/\_    
+" ____________________________________     
+
+" LAST UPDATE: 2018-09-06
+"
+" Dein configure
+"
+" *****************************************
+
 let s:plugin_dir = expand('~/.vim/bundle/')
 let s:dein_dir = s:plugin_dir . 'repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath+=' . s:dein_dir
@@ -30,7 +45,5 @@ endif
 filetype plugin indent on
 set t_Co=256
 set background=dark
-" colorscheme hybrid
 colorscheme hybrid_material
-" colorscheme chlordane
 syntax on

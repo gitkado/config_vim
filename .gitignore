@@ -1,3 +1,5 @@
 bundle/
 dein/
 tmp/
+private_*
+.UPDATE_LOG
