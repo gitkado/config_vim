@@ -41,9 +41,9 @@ if has('vim_starting') && dein#check_install()
 	call dein#install()
 endif
 
-
 filetype plugin indent on
 set t_Co=256
 set background=dark
 colorscheme hybrid_material
 syntax on
+

@@ -15,75 +15,104 @@
 "
 " *****************************************
 "
-
-" NERDTree:{{{
-" - https://github.com/scrooloose/nerdtree
+" defx :{{{
+" - https://github.com/Shougo/defx.nvim
 " ******************************************************
-map <C-a> :NERDTreeToggle<CR>
 
-let g:NERDTreeShowBookmarks=1
+let g:rooter_manual_only = 1
 
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 2
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <silent><Leader><space> :Defx -split=floating -columns=icon:filename -toggle<CR>
 
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable  = '+'
-let g:NERDTreeDirArrowCollapsible = '-'
-
-let NERDTreeShowHidden = 1
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('config' , 146 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('conf'   , 146 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('yml'    , 146 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('json'   , 146 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('toml'   , 146 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('vim'    , 28  , 'none' , '#3366FF' , '#151515')
-call NERDTreeHighlightFile('md'     , 189 , 'none' , '#3366FF' , '#151515')
-call NERDTreeHighlightFile('txt'    , 189 , 'none' , '#3366FF' , '#151515')
-call NERDTreeHighlightFile('html'   , 208 , 'none' , 'yellow'  , '#151515')
-call NERDTreeHighlightFile('styl'   , 118 , 'none' , 'cyan'    , '#151515')
-call NERDTreeHighlightFile('css'    , 153 , 'none' , 'cyan'    , '#151515')
-call NERDTreeHighlightFile('scss'   , 213 , 'none' , 'cyan'    , '#151515')
-call NERDTreeHighlightFile('js'     , 11  , 'none' , '#ffa500' , '#151515')
-call NERDTreeHighlightFile('php'    , 141 , 'none' , '#ff00ff' , '#151515')
-call NERDTreeHighlightFile('rb'     , 196 , 'none' , 'red'     , '#151515')
-call NERDTreeHighlightFile('py'     , 77  , 'none' , 'yellow'  , '#151515')
-
-" }}}
+autocmd FileType defx call s:defx_my_settings()
 
 
-" NERDTreeGitPlugin:{{{
-" - https://github.com/Xuyuanp/nerdtree-git-plugin
-" ******************************************************
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "+",
-    \ "Untracked" : "_",
-    \ "Renamed"   : "@",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "-",
-    \ "Dirty"     : ">",
-    \ "Clean"     : "",
-    \ 'Ignored'   : '!',
-    \ "Unknown"   : "?"
-    \ }
+    call defx#custom#column('git', 'indicators', {
+            \ 'Modified'  : '+',
+            \ 'Staged'    : '-',
+            \ 'Untracked' : '*',
+            \ 'Renamed'   : '>',
+            \ 'Unmerged'  : '=',
+            \ 'Ignored'   : '.',
+            \ 'Deleted'   : '!',
+            \ 'Unknown'   : '?'
+            \ })
+
+    call defx#custom#column('icon', {
+            \ 'directory_icon': '▸',
+            \ 'opened_icon': '▾',
+            \ 'root_icon': ' ',
+            \ })
+        function! s:defx_my_settings() abort
+
+      nnoremap <silent><buffer><expr> <tab>
+     \ defx#do_action('toggle_columns', ['git:mark:time:filename'])
+
+      nnoremap <silent><buffer><expr> <Leader><Space>
+     \ defx#do_action('quit')
+
+      nnoremap <silent><buffer><expr> <ESC>
+     \ defx#do_action('quit')
+
+      nnoremap <silent><buffer><expr> q
+     \ defx#do_action('quit')
+
+     " Define mappings
+      nnoremap <silent><buffer><expr> <CR>
+     \ defx#is_directory() ?
+     \ defx#do_action('open_or_close_tree') :
+     \ defx#do_action('multi', ['drop', 'quit'])
+      nnoremap <silent><buffer><expr> o
+     \ defx#is_directory() ?
+     \ defx#do_action('open_or_close_tree') :
+     \ defx#do_action('multi', ['drop', 'quit'])
+      nnoremap <silent><buffer><expr> c
+     \ defx#do_action('copy')
+      nnoremap <silent><buffer><expr> m
+     \ defx#do_action('move')
+      nnoremap <silent><buffer><expr> p
+     \ defx#do_action('paste')
+      nnoremap <silent><buffer><expr> l
+     \ defx#is_directory() ?
+     \ defx#do_action('open') :
+     \ defx#do_action('open', 'vsplit')
+      nnoremap <silent><buffer><expr> K
+     \ defx#do_action('new_directory')
+      nnoremap <silent><buffer><expr> N
+     \ defx#do_action('new_file')
+      nnoremap <silent><buffer><expr> d
+     \ defx#do_action('remove')
+      nnoremap <silent><buffer><expr> r
+     \ defx#do_action('rename')
+      nnoremap <silent><buffer><expr> x
+     \ defx#do_action('execute_system')
+      nnoremap <silent><buffer><expr> yy
+     \ defx#do_action('yank_path')
+      nnoremap <silent><buffer><expr> .
+     \ defx#do_action('toggle_ignored_files')
+      nnoremap <silent><buffer><expr> h
+     \ defx#do_action('cd', ['..'])
+      nnoremap <silent><buffer><expr> ~
+     \ defx#do_action('cd')
+      nnoremap <silent><buffer><expr> <Space>
+     \ defx#do_action('toggle_select') . 'j'
+      nnoremap <silent><buffer><expr> *
+     \ defx#do_action('toggle_select_all')
+      nnoremap <silent><buffer><expr> j
+     \ line('.') == line('$') ? 'gg' : 'j'
+      nnoremap <silent><buffer><expr> k
+     \ line('.') == 1 ? 'G' : 'k'
+      nnoremap <silent><buffer><expr> cd
+     \ defx#do_action('change_vim_cwd')
+    endfunction
 " }}}
 
 
 " startify:{{{
 " - https://github.com/Xuyuanp/nerdtree-git-plugin
 " ******************************************************
-let g:startify_bookmarks = [
-    \ "~/.vim/vimrc",
-    \ "~/.vim/rc/",
-    \ ]
-
 " ASCII ARTを真ん中寄せする
 " :h startifyを参照
 function! s:filter_header(lines) abort
@@ -95,7 +124,6 @@ endfunction
 
 let g:startify_custom_header = s:filter_header([
             \'',
-            \'',
             \'     _____/\/\____/\/\_/\/\______________________',
             \'    _____/\/\____/\/\________/\/\/\__/\/\_______ ',
             \'   _____/\/\____/\/\_/\/\___/\/\/\/\/\/\/\_____  ',
@@ -103,18 +131,32 @@ let g:startify_custom_header = s:filter_header([
             \' _________/\/\_____/\/\/\_/\/\______/\/\_____    ',
             \'____________________________________________     ',
             \'',
-            \'     Think rich, look poor. - Andy Warhol',
+            \' 零式 特殊操作型 漆黒画面用 戦闘文字編集機 [改]',
             \''
     \ ])
 
-            " \'',
-            " \'',
-            " \'                                            Y8b Y88888P ,e,             ',
-            " \'                                             Y8b Y888P   "  888 888 8e  ',
-            " \'                                              Y8b Y8P   888 888 888 88b ',
-            " \'                                               Y8b Y    888 888 888 888 ',
-            " \'                                                Y8P     888 888 888 888 ',
 
+
+let g:startify_custom_footer = s:filter_header([
+            \'Think rich, look poor. - Andy Warhol       ',
+            \'',
+            \''
+    \ ])
+
+let g:startify_bookmarks = [
+    \ "~/.vim/vimrc",
+    \ "~/.vim/rc/",
+    \ ]
+
+let g:startify_session_before_save = [
+    \ 'echo "Cleaning up before saving.."',
+    \ 'silent! Defx'
+    \ ]
+let g:startify_lists = [
+    \ { 'header': ['   MRU'],            'type': 'files' },
+    \ { 'header': ['   MRU '. getcwd()], 'type': 'dir' },
+    \ { 'header': ['   Bookmarks'],      'type': 'bookmarks' },
+    \ ]
 " }}}
 
 
@@ -124,66 +166,30 @@ let g:startify_custom_header = s:filter_header([
 let g:lightline = {
 			\ 'colorscheme': 'jellybeans',
 			\ 'active': {
-			\   'right': [ [ 'syntastic', 'lineinfo' ],
+			\   'right': [ ['lineinfo' ],
 			\              [ 'percent' ],
 			\              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-			\ },
-			\ 'component_expand': {
-			\   'syntastic': 'SyntasticStatuslineFlag',
 			\ },
 			\ 'component_type': {
 			\   'syntastic': 'error',
 			\ }
 			\ }
-let g:syntastic_mode_map = { 'mode': 'passive' }
-augroup AutoSyntastic
-	autocmd!
-	autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-	SyntasticCheck
-	call lightline#update()
-endfunction
 "}}}
 
 
 " Parenmatch: {{{
 " - https://github.com/itchyny/vim-parenmatch
 " ******************************************************
-let g:loaded_matchparen = 1
+"let g:loaded_matchparen = 1
 "}}}
 
 
-" Matchtagalways: {{{
-" - https://github.com/Valloric/MatchTagAlways
+" matchup: {{{
+" - https://github.com/andymass/vim-matchup
 " ******************************************************
-let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'jinja' : 1,
-	\ 'php' : 1,
-    \}
-let g:mta_use_matchparen_group = 0
-highlight MatchTag ctermfg=black ctermbg=lightgreen guifg=black guibg=lightgreen
+"let g:loaded_matchparen = 1
 "}}}
 
-
-" Emmet: {{{
-" - https://github.com/mattn/emmet-vim
-" ******************************************************
-" let g:user_emmet_leader_key = '<C-e>'
-let g:user_emmet_expandabbr_key = '<C-tab>'
-let g:user_emmet_settings = {
-\	'lang': 'ja',
-\	'html': {
-\		'indentation': ''
-\	},
-\	'css': {
-\		'filters': 'fc'
-\	},
-\ }
-" }}}
 
 
 " operator-replace: {{{
@@ -213,57 +219,15 @@ nmap <silent>rrr <Plug>(operator-surround-replace)<Plug>(textobj-anyblock-a)
 
 " if you use vim-textobj-between
 nmap <silent>rdb <Plug>(operator-surround-delete)<Plug>(textobj-between-a)
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-"}}}
 
-
-" yankround: {{{
-" ******************************************************
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap gp <Plug>(yankround-gp)
-nmap gP <Plug>(yankround-gP)
-nmap <C-[> <Plug>(yankround-prev)
-nmap <C-]> <Plug>(yankround-next)
-nnoremap <silent>gp :<C-u>Unite<Space>yankround<CR>
-
-let g:yankround_dir = '$HOME/.vim/tmp/YNK/yankround'
 "}}}
 
 
 " easymotion: {{{
 " ******************************************************
 let g:EasyMotion_do_mapping = 0
-nmap <C-G> <Plug>(easymotion-overwin-f2)
+nmap <C-g> <Plug>(easymotion-overwin-f2)
 "}}}
-
-
-" Vim-php-cs-fixer: {{{
-" ******************************************************
-" If php-cs-fixer is in $PATH, you don't need to define line below
-let g:php_cs_fixer_path = "/Users/takei_kenji/.composer/vendor/bin/php-cs-fixer" " define the path to the php-cs-fixer.phar
-
-" If you use php-cs-fixer version 1.x
-"let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
-"let g:php_cs_fixer_config = "default"                  " options: --config
-" If you want to define specific fixers:
-"let g:php_cs_fixer_fixers_list = "linefeed,short_tag" " options: --fixers
-"let g:php_cs_fixer_config_file = '.php_cs'            " options: --config-file
-" End of php-cs-fixer version 1 config params
-
-" If you use php-cs-fixer version 2.x
-let g:php_cs_fixer_rules = "@Symfony"          " options: --rules (default:@PSR2)
-" let g:php_cs_fixer_cache = "~/.cache/php_cs/.cache" " options: --cache-file
-" let g:php_cs_fixer_config_file = '~/.config/php_cs/.config' " options: --config
-" End of php-cs-fixer version 2 config params
-
-let g:php_cs_fixer_php_path = "/usr/local/bin/php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 1                    " Return the output of command if 1, else an inline information.
-
-" autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
-" }}}
 
 
 " fzf.vim: {{{
@@ -273,70 +237,34 @@ set rtp+=/usr/local/opt/fzf
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-" In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10split' }
+" let g:fzf_layout = { 'window': 'enew' }
+" let g:fzf_layout = { 'window': '-tabnew' }
 
-" let g:fzf_colors =
-" \ { 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'border':  ['fg', 'Ignore'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
+
+if has('nvim')
+    "let g:fzf_layout = { 'down': '~30%' }
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+else
+    let g:fzf_layout = { 'window': '10split' }
+endif
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'white'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
-
-" Command for git grep
-" - fzf#vim#grep(command, with_column, [options], [fullscreen])
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-
-" Augmenting Ag command using fzf#vim#with_preview function
-"   * fzf#vim#with_preview([[options], [preview window], [toggle keys...]])
-"     * For syntax-highlighting, Ruby and any of the following tools are required:
-"       - Bat: https://github.com/sharkdp/bat
-"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
-"       - CodeRay: http://coderay.rubychan.de/
-"       - Rouge: https://github.com/jneen/rouge
-"
-"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
-"   :Ag! - Start fzf in fullscreen and display the preview window above
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
-
-" Likewise, Files command with preview window
-command! -bang -nargs=? -complete=dir GFiles
-  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-command! -bang -nargs=? -complete=dir Baffers
-  \ call fzf#vim#baffers(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>g :GFiles<CR>
-nnoremap <Leader>G :GFiles?<CR>
-
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>h :History<CR>
-nnoremap <Leader>/ :Ag<CR>
-
-" nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
 let g:fzf_tags_command = 'ctags -R -f .tags'
 let g:fzf_buffers_jump = 1
 
@@ -345,7 +273,7 @@ function! s:fzf_statusline()
   highlight fzf1 ctermfg=161 ctermbg=251
   highlight fzf2 ctermfg=23 ctermbg=251
   highlight fzf3 ctermfg=237 ctermbg=251
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+  setlocal statusline=%#fzf1#\ (^^)<\ %#fzf2#fz%#fzf3#f
 endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
@@ -357,11 +285,49 @@ let g:fzf_action = {
   \ 'ctrl-s': 'split' }
 
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | call fzf#vim#history() | endif
+
+function! FloatingFZF()
+  let buf = nvim_create_buf(v:false, v:true)
+  call setbufvar(buf, '&signcolumn', 'no')
+
+  let height = &lines / 2
+  let width = float2nr(&columns - (&columns * 2 / 10))
+  let row = float2nr((&lines - height) / 2)
+  let col = float2nr((&columns - width) / 2)
+
+  let opts = {
+        \ 'relative': 'editor',
+        \ 'row': row,
+        \ 'col': col,
+        \ 'width': width,
+        \ 'height': height
+        \ }
+
+  call nvim_open_win(buf, v:true, opts)
+endfunction
+
+
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>g :GFiles<CR>
+nnoremap <Leader>G :GFiles?<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader><Tab> :Buffers<CR>
+nnoremap <Leader>h :History<CR>
+nnoremap <Leader>/ :Pt<CR>
+" nnoremap <silent> <C-]> :call fzf#vim#tags(expand('<cword>'))<CR>
+
+
+command! -bang -nargs=* Pt
+  \ call fzf#vim#grep(
+  \   'pt --nogroup ' .shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 " }}}
 
 
 " vim-gitgutter: {{{
-set signcolumn=yes
 let g:gitgutter_sign_added              = '|'
 let g:gitgutter_sign_modified           = '|'
 let g:gitgutter_sign_removed            = '|'
@@ -370,7 +336,41 @@ let g:gitgutter_sign_modified_removed   = '|'
 "}}}
 
 
-" tagbar: {{{
-nmap <C-k> :TagbarToggle<CR>
+" vim-choosewin: {{{
+nmap <C-w><Space> <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+let g:choosewin_overlay_clear_multibyte = 1
+" }}}
+
+" undo-tree: {{{
+nnoremap <Space>u :UndotreeToggle<CR>
+" }}}
+
+" coc.nvim : {{{
+" Better display for messages
+set cmdheight=10
+let g:LanguageClient_serverCommands = {
+            \ 'vue': ['vls'],
+            \ }
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <Leader>p :<C-u>CocList -A -N --top yank<cr>
+
 "}}}
 

@@ -32,22 +32,30 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.styl setf stylus
 
     autocmd BufRead,BufNewFile *.js setf javascript
+    autocmd BufRead,BufNewFile *.vue setf vue
     autocmd BufRead,BufNewFile *.ts setf typescript
     autocmd BufRead,BufNewFile *.coffee setf coffeescript
 
     autocmd BufRead,BufNewFile *.php,*.ctp setf php
     autocmd BufRead,BufNewFile *.rb setf ruby
     autocmd BufRead,BufNewFile *.py setf python
+    autocmd BufRead,BufNewFile *.rs setf rust
+    autocmd BufRead,BufNewFile *.kt setf kotolin
+    autocmd BufRead,BufNewFile *.c setf c
     autocmd BufRead,BufNewFile *.lua setf lua
+    autocmd BufRead,BufNewFile *.go setf go
     autocmd BufRead,BufNewFile *.vim,vimrc setf vim
 
+    autocmd BufRead,BufNewFile *.log setf log
+    autocmd BufRead,BufNewFile *.cfg setf yaml
     autocmd BufRead,BufNewFile *.yml setf yaml
     autocmd BufRead,BufNewFile *.toml setf toml
 
     autocmd BufRead,BufNewFile .zsh setf zsh
+    autocmd BufRead,BufNewFile *.fish setf fish
+    autocmd BufRead,BufNewFile fishfile setf fish
     autocmd BufRead,BufNewFile COMMIT_EDITMSG setf gitcommit
     autocmd BufRead,BufNewFile COMMIT_EDITMSG colorscheme deus
-    autocmd FileType php :set dictionary=~/.vim/dict/vim-dict-wordpress/wp.dict
 augroup END
 
 " Turn off diff mode automatically

@@ -13,10 +13,12 @@
 "
 " *****************************************
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " for USkey
 nnoremap ; :
+
+noremap <Space>v :source ~/.vim/vimrc<CR>
 
 inoremap <silent> jj <ESC>
 onoremap <silent> jj <ESC>
@@ -57,7 +59,7 @@ nnoremap gs  :<C-u>%s///g<Left><Left><Left>
 vnoremap gs  :s///g<Left><Left><Left>
 
 " 日付の入力
-inoremap <Leader>d  <C-r>=strftime('%Y-%m-%d')<Return>
+" inoremap <Leader>d  <C-r>=strftime('%Y-%m-%d')<Return>
 
 " ウィンドウ分割時にウィンドウサイズを調節する。Shiftキー ＋ 矢印キー
 nnoremap <silent> <S-Left>  :5wincmd <<CR>
@@ -75,10 +77,9 @@ nnoremap <silent> <C-p> :bprevious<CR>
 nnoremap <silent> <C-n> :bnext<CR>
 nnoremap <silent> <C-b> :b#<CR>
 
-inoremap <Leader>= <C-r>=
-
+inoremap <silent> =\ <C-r>=
 " Visualモードでインクリメント/デクリメントを連続でできるように
 vnoremap <c-a> <c-a>gv
 vnoremap <c-x> <c-x>gv
 
-inoremap <silent> <C-s> <c-x><C-k>
+nnoremap <Space><ESC> ToggleRelativeNumber

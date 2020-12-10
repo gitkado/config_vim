@@ -17,13 +17,25 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
-
-[[plugins]]
 repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'airblade/vim-rooter'
+
+# Filer
+# =====
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+[[plugins]]
+repo = 'kristijanhusak/defx-git'
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+depends = ['defx-git']
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'mhinz/vim-startify'
@@ -31,17 +43,22 @@ repo = 'mhinz/vim-startify'
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 
-[[plugins]]
-repo = 'mattn/emmet-vim'
+
+# [[plugins]]
+# repo = 'mattn/emmet-vim'
 
 [[plugins]]
 repo = 'h1mesuke/vim-alignta'
 
 [[plugins]]
-repo = 'Valloric/MatchTagAlways'
+repo = 'mbbill/undotree'
+
+# [[plugins]]
+# repo = 'Valloric/MatchTagAlways'
 
 [[plugins]]
-repo = 'itchyny/vim-parenmatch'
+#repo = 'itchyny/vim-parenmatch'
+repo = 'andymass/vim-matchup'
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
@@ -53,19 +70,23 @@ repo = 'kana/vim-operator-replace'
 repo = 'rhysd/vim-operator-surround'
 
 [[plugins]]
-repo = 'LeafCage/yankround.vim'
-
-[[plugins]]
 repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'majutsushi/tagbar'
+repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'itchyny/lightline.vim'
+repo = 't9md/vim-choosewin'
+
+# [[plugins]]
+# repo = 'wesQ3/vim-windowswap'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
 
 # color scheme
 [[plugins]]
@@ -75,11 +96,9 @@ repo = 'kristijanhusak/vim-hybrid-material'
 repo = 'ajmwagar/vim-deus'
 
 [[plugins]]
-repo = 'kaicataldo/material.vim'
+repo = 'glacambre/firenvim'
 
 # dict
-[[plugins]]
-repo = 'miya0001/vim-dict-wordpress'
-
-
+# [[plugins]]
+# repo = 'miya0001/vim-dict-wordpress'
 

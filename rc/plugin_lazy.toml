@@ -18,10 +18,6 @@ repo  = 'Quramy/tsuquyomi'
 on_ft = ['typescript']
 
 [[plugins]]
-repo  = 'stephpy/vim-php-cs-fixer'
-on_ft = ['php']
-
-[[plugins]]
 repo  = 'stephpy/vim-yaml'
 on_ft = ['yaml']
 
@@ -29,21 +25,32 @@ on_ft = ['yaml']
 repo  = 'cespare/vim-toml'
 on_ft = ['toml']
 
+[[plugins]]
+repo  = 'digitaltoad/vim-pug'
+on_ft = ['pug']
+
+[[plugins]]
+repo  = 'posva/vim-vue'
+on_ft = ['vue']
 
 [[plugins]]
 repo  = 'wavded/vim-stylus'
 on_ft = ['stylus']
 
-
+[[plugins]]
+repo  = 'dag/vim-fish'
+on_ft = ['fish']
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-on_i = 1
+repo = 'MTDL9/vim-log-highlighting'
+on_ft = ['log']
 
-[[plugins]]
-repo      = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
+# [[plugins]]
+# repo = 'sbdchd/neoformat'
+# on_ft = ['javascript']
 
-[[plugins]]
-repo      = 'Shougo/unite-outline'
-on_source = ['unite.vim']
+# [[plugins]]
+# repo = 'prettier/vim-prettier'
+# on_ft = ['javascript', 'vue']
+
+
