@@ -1,5 +1,6 @@
 bundle/
 dein/
 tmp/
+!tmp/**/.gitkeep
 private_*
 .UPDATE_LOG
