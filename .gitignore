@@ -1,6 +1,8 @@
 bundle/
 dein/
-tmp/**/
+tmp/BAK/
+tmp/SWP/
+tmp/UND/
 private_*
 .UPDATE_LOG
 !.gitkeep
