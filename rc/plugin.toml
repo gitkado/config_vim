@@ -84,9 +84,9 @@ repo = 't9md/vim-choosewin'
 # [[plugins]]
 # repo = 'wesQ3/vim-windowswap'
 
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
+#[[plugins]]
+#repo = 'neoclide/coc.nvim'
+#rev = 'release'
 
 # color scheme
 [[plugins]]
@@ -95,8 +95,8 @@ repo = 'kristijanhusak/vim-hybrid-material'
 [[plugins]]
 repo = 'ajmwagar/vim-deus'
 
-[[plugins]]
-repo = 'glacambre/firenvim'
+#[[plugins]]
+#repo = 'glacambre/firenvim'
 
 # dict
 # [[plugins]]
